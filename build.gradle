@@ -28,6 +28,18 @@ dependencyManagement {
     }
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+springBoot {
+    mainClass = 'com.example.issuesolver.IssueSolverApplication'
+}
+
+tasks.named('bootJar') {
+    archiveFileName = 'issue-solver-0.0.1-SNAPSHOT.jar'
+}
+
 test {
     useJUnitPlatform()
 }
