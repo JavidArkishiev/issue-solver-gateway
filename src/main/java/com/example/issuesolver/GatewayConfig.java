@@ -4,9 +4,9 @@ import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
-import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -49,24 +49,17 @@ public class GatewayConfig {
 
     @Bean
     public CorsWebFilter corsWebFilter() {
-        UrlBasedCorsConfigurationSource source = corsConfigurationSource();
-        return new CorsWebFilter(source);
-    }
-
-    @Bean
-    public UrlBasedCorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Collections.singletonList("*"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "PUT", "POST", "DELETE", "OPTIONS", "PATCH"));
-        configuration.setMaxAge(3600L);
-        configuration.setAllowedHeaders(Arrays.asList(
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowedOrigins(Collections.singletonList("*"));
+        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
+        config.setAllowedHeaders(Arrays.asList(
                 "Authorization", "x-xsrf-token", "Accept-language", "Access-Control-Allow-Headers",
                 "Origin", "Accept", "X-Requested-With", "userId",
                 "Content-Type", "Access-Control-Request-Method", "Access-Control-Request-Headers",
                 "Access-Control-Expose-Headers", "X-Session-Id", "X-Platform"));
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
+        config.setMaxAge(3600L);
+        source.registerCorsConfiguration("/**", config);
+        return new CorsWebFilter(source);
     }
 }

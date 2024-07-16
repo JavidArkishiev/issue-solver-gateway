@@ -10,23 +10,21 @@
 //import java.util.Collections;
 //
 //@Configuration
-//public class CorsConfig {
+//public class Config {
 //
 //    @Bean
 //    public CorsWebFilter corsWebFilter() {
-//        CorsConfiguration corsConfig = new CorsConfiguration();
-//        corsConfig.setAllowedOrigins(Collections.singletonList("*"));
-//        corsConfig.setAllowedMethods(Arrays.asList("GET", "PUT", "POST", "DELETE", "OPTIONS", "PATCH"));
-//        corsConfig.setMaxAge(3600L);
-//        corsConfig.setAllowedHeaders(Arrays.asList(
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        CorsConfiguration config = new CorsConfiguration();
+//        config.setAllowedOrigins(Collections.singletonList("*"));
+//        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
+//        config.setAllowedHeaders(Arrays.asList(
 //                "Authorization", "x-xsrf-token", "Accept-language", "Access-Control-Allow-Headers",
 //                "Origin", "Accept", "X-Requested-With", "userId",
 //                "Content-Type", "Access-Control-Request-Method", "Access-Control-Request-Headers",
 //                "Access-Control-Expose-Headers", "X-Session-Id", "X-Platform"));
-//
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", corsConfig);
-//
+//        config.setMaxAge(3600L);
+//        source.registerCorsConfiguration("/**", config);
 //        return new CorsWebFilter(source);
 //    }
 //}
