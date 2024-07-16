@@ -1,156 +1,60 @@
 spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: issue-solver
+
   cloud:
     gateway:
       routes:
-        - id: auth-ms-auths
+        - id: auth-ms
           uri: https://govermentauthapi20240708181106.azurewebsites.net/
           predicates:
             - Path=/api/Auths/**
-          metadata:
-            cors:
-              allowedOrigins: '*'
-              allowedMethods:
-                - GET
-                - PUT
-                - POST
-                - DELETE
-                - OPTIONS
-                - PATCH
-              allowedHeaders: '*'
-              maxAge: 3600
 
-        - id: auth-ms-roles
+
+        - id: auth-ms
           uri: https://govermentauthapi20240708181106.azurewebsites.net/
           predicates:
             - Path=/api/Roles/**
-          metadata:
-            cors:
-              allowedOrigins: '*'
-              allowedMethods:
-                - GET
-                - PUT
-                - POST
-                - DELETE
-                - OPTIONS
-                - PATCH
-              allowedHeaders: '*'
-              maxAge: 3600
 
-        - id: auth-ms-users
+        - id: auth-ms
           uri: https://govermentauthapi20240708181106.azurewebsites.net/
           predicates:
             - Path=/api/Users/**
-          metadata:
-            cors:
-              allowedOrigins: '*'
-              allowedMethods:
-                - GET
-                - PUT
-                - POST
-                - DELETE
-                - OPTIONS
-                - PATCH
-              allowedHeaders: '*'
-              maxAge: 3600
 
-        - id: admin-ms-organizations
+
+        - id: admin-ms
           uri: https://adminapi20240708182629.azurewebsites.net/
           predicates:
-            - Path=/api/Organizations/**
-          metadata:
-            cors:
-              allowedOrigins: '*'
-              allowedMethods:
-                - GET
-                - PUT
-                - POST
-                - DELETE
-                - OPTIONS
-                - PATCH
-              allowedHeaders: '*'
-              maxAge: 3600
+            - Path=/api/Organozations/**
 
-        - id: admin-ms-staffs
+
+        - id: admin-ms
           uri: https://adminapi20240708182629.azurewebsites.net/
           predicates:
             - Path=/api/Staffs/**
-          metadata:
-            cors:
-              allowedOrigins: '*'
-              allowedMethods:
-                - GET
-                - PUT
-                - POST
-                - DELETE
-                - OPTIONS
-                - PATCH
-              allowedHeaders: '*'
-              maxAge: 3600
 
-        - id: request-ms-requests
+
+        - id: request-ms
           uri: https://request-ms-d25203bd24ff.herokuapp.com/
           predicates:
             - Path=/request/**
-          metadata:
-            cors:
-              allowedOrigins: '*'
-              allowedMethods:
-                - GET
-                - PUT
-                - POST
-                - DELETE
-                - OPTIONS
-                - PATCH
-              allowedHeaders: '*'
-              maxAge: 3600
 
-        - id: request-ms-categories
+
+        - id: request-ms
           uri: https://request-ms-d25203bd24ff.herokuapp.com/
           predicates:
             - Path=/category/**
-          metadata:
-            cors:
-              allowedOrigins: '*'
-              allowedMethods:
-                - GET
-                - PUT
-                - POST
-                - DELETE
-                - OPTIONS
-                - PATCH
-              allowedHeaders: '*'
-              maxAge: 3600
 
-        - id: request-ms-likes
+
+        - id: request-ms
           uri: https://request-ms-d25203bd24ff.herokuapp.com/
           predicates:
             - Path=/api/v1/likes/**
-          metadata:
-            cors:
-              allowedOrigins: '*'
-              allowedMethods:
-                - GET
-                - PUT
-                - POST
-                - DELETE
-                - OPTIONS
-                - PATCH
-              allowedHeaders: '*'
-              maxAge: 3600
 
-        - id: request-ms-comments
+
+        - id: request-ms
           uri: https://request-ms-d25203bd24ff.herokuapp.com/
           predicates:
             - Path=/api/v1/comments/**
-          metadata:
-            cors:
-              allowedOrigins: '*'
-              allowedMethods:
-                - GET
-                - PUT
-                - POST
-                - DELETE
-                - OPTIONS
-                - PATCH
-              allowedHeaders: '*'
-              maxAge: 3600
