@@ -6,6 +6,34 @@ spring:
 
   cloud:
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - PUT
+              - POST
+              - DELETE
+              - OPTIONS
+              - PATCH
+            maxAge: 3600
+            allowedHeaders:
+              - Authorization
+              - x-xsrf-token
+              - Accept-language
+              - Access-Control-Allow-Headers
+              - Origin
+              - Accept
+              - X-Requested-With
+              - userId
+              - Content-Type
+              - Access-Control-Request-Method
+              - Access-Control-Request-Headers
+              - Access-Control-Expose-Headers
+              - X-Session-Id
+              - X-Platform
+
       routes:
         - id: auth-ms-auths
           uri: https://govermentauthapi20240708181106.azurewebsites.net/
@@ -69,21 +97,3 @@ spring:
             - Path=/api/v1/comments/**
           filters:
             - StripPrefix=2
-
-      default-filters:
-        - name: AddResponseHeader
-          args:
-            name: Access-Control-Allow-Origin
-            value: "*"
-        - name: AddResponseHeader
-          args:
-            name: Access-Control-Allow-Methods
-            value: "GET, PUT, POST, DELETE, OPTIONS, PATCH"
-        - name: AddResponseHeader
-          args:
-            name: Access-Control-Max-Age
-            value: "3600"
-        - name: AddResponseHeader
-          args:
-            name: Access-Control-Allow-Headers
-            value: "Authorization, x-xsrf-token, Accept-language, Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, userId, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Expose-Headers, X-Session-Id, X-Platform"
