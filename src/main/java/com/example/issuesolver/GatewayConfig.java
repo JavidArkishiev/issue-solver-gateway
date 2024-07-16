@@ -48,7 +48,7 @@ public class GatewayConfig {
                 .build();
     }
 
-    @Bean
+//    @Bean
     public GatewayFilter corsFilter() {
         CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.setAllowedOrigins(Collections.singletonList("*"));
